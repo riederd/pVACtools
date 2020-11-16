@@ -229,10 +229,12 @@ class VectorVisualization:
     def output_screen(self):
         ps_file = os.path.join(self.output_directory, "vector.ps")
         out_file = os.path.join(self.output_directory, "vector.jpg")
+        pdf_file = os.path.join(self.output_directory, "vector.pdf")
         ts = self.turtle.getscreen()
         ts.getcanvas().postscript(file=ps_file)
         Image.open(ps_file).save(out_file)
-        os.remove(ps_file)
+        Image.open(ps_file).convert('RGB').save(pdf_file)
+        # os.remove(ps_file)
 
     #select color from scheme
     def get_color(self, count):
